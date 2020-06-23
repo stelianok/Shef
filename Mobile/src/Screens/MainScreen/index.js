@@ -1,14 +1,19 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
 
+import Recipe from '../../components/Recipe';
 import styles from './styles';
 
 export default function MainScreen(){
     return(
+        <ScrollView>
         <View style={styles.container}>
-            <Text>
-               Main Screen
-            </Text>
+            <View style={styles.body}>
+                <Recipe/>
+                
+            </View>
+
         </View>
+        </ScrollView>
     )
 }
