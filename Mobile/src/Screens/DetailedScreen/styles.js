@@ -30,11 +30,20 @@ const styles = StyleSheet.create({
 
     marginTop: 20,
     marginLeft: 15,
+
+    fontWeight: 'bold',
+  },
+  subtitle: {
+    fontSize: 25,
+    color: '#B1FF92',
+
+    fontWeight: 'bold',
+    alignSelf: 'flex-start',
   },
   div: {
     backgroundColor: '#B1FF92',
 
-    marginTop: 25,
+    marginTop: 10,
     marginBottom: 25,
   },
   level: {
@@ -44,6 +53,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
 
     marginRight: 20,
+    marginTop: 15,
   },
   tagView: {
     flexDirection: 'row',
@@ -75,6 +85,22 @@ const styles = StyleSheet.create({
     borderRadius: 8,
 
     alignSelf: 'center',
+  },
+  text: {
+    fontSize: 25,
+    color: '#D9D9D9',
+    alignSelf: 'flex-start',
+    marginLeft: 20,
+    marginBottom: 7,
+  },
+  ingredientsView: {
+    alignSelf: 'flex-start',
+
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    marginLeft: 20,
+    marginBottom: 10,
+    flexDirection: 'row',
   },
 });
 export default styles;
