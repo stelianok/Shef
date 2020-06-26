@@ -102,5 +102,14 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     flexDirection: 'row',
   },
+  subtitlePrep: {
+    fontSize: 25,
+    color: '#B1FF92',
+
+    fontWeight: 'bold',
+    alignSelf: 'flex-start',
+    marginLeft: 20,
+    marginBottom: 20,
+  },
 });
 export default styles;

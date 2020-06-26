@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState, useCallback} from 'react';
 import {View, Text, ScrollView, Image, useWindowDimensions} from 'react-native';
 
@@ -11,13 +12,27 @@ export default function DetailedScreen() {
 
   const [textShown, setTextShown] = useState(false); //To show ur remaining Text
   const [lengthMore, setLengthMore] = useState(false); //to show the "Read more & Less Line"
+
+  const [textShownPrep, setTextShownPrep] = useState(false);
+  const [lengthMorePrep, setlengthMorePrep] = useState(false);
+
   const toggleNumberOfLines = () => {
     //To toggle the show text or hide it
     setTextShown(!textShown);
   };
 
+  const toggleNumberOfLinesPrep = () => {
+    //To toggle the show text or hide it
+    setTextShownPrep(!textShownPrep);
+  };
+
   const onTextLayout = useCallback((e) => {
     setLengthMore(e.nativeEvent.lines.length >= 4); //to check the text is more than 4 lines or not
+    // console.log(e.nativeEvent);
+  }, []);
+
+  const onTextLayoutPrep = useCallback((e) => {
+    setlengthMorePrep(e.nativeEvent.lines.length >= 4); //to check the text is more than 4 lines or not
     // console.log(e.nativeEvent);
   }, []);
 
@@ -54,11 +69,11 @@ export default function DetailedScreen() {
             <Text style={styles.subtitle}> Ingredients </Text>
             <Icon name={'shopping-cart'} size={36} color={'#B1FF92'} />
           </View>
-          <View style={styles.mainContainer}>
+          <View>
             <Text
               onTextLayout={onTextLayout}
               numberOfLines={textShown ? undefined : 4}
-              style={[styles.text, {lineHeight: 21}]}>
+              style={[styles.text, {lineHeight: 21, marginLeft: 25}]}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
               suscipit, dui vel convallis elementum, ante ex varius felis, et
               tempor sem purus quis quam. Integer sit amet luctus neque. Nunc ut
@@ -76,6 +91,34 @@ export default function DetailedScreen() {
                   {lineHeight: 21, fontSize: 15, color: 'cyan'},
                 ]}>
                 {textShown ? 'Read less...' : 'Read more...'}
+              </Text>
+            ) : null}
+          </View>
+          <Divider style={[styles.div, {width: width - 75}]} />
+
+          <Text style={styles.subtitlePrep}>Preparation Mode</Text>
+          <View>
+            <Text
+              onTextLayout={onTextLayoutPrep}
+              numberOfLines={textShownPrep ? undefined : 4}
+              style={[styles.text, {lineHeight: 21, marginLeft: 20}]}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
+              suscipit, dui vel convallis elementum, ante ex varius felis, et
+              tempor sem purus quis quam. Integer sit amet luctus neque. Nunc ut
+              sodales orci, in dignissim mauris. Donec tempor, risus quis
+              interdum congue, tellus augue accumsan nulla, non rhoncus purus
+              nibh eget nisl. Maecenas semper, nisl vel imperdiet tempus, odio
+              felis
+            </Text>
+
+            {lengthMorePrep ? (
+              <Text
+                onPress={toggleNumberOfLinesPrep}
+                style={[
+                  styles.text,
+                  {lineHeight: 21, fontSize: 15, color: 'cyan'},
+                ]}>
+                {textShownPrep ? 'Read less...' : 'Read more...'}
               </Text>
             ) : null}
           </View>
