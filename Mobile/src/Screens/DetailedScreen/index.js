@@ -1,6 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState, useCallback} from 'react';
-import {View, Text, ScrollView, Image, useWindowDimensions} from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  Image,
+  useWindowDimensions,
+  Linking,
+} from 'react-native';
 
 import Icon from 'react-native-vector-icons/Feather';
 import {Divider} from 'react-native-elements';
@@ -122,6 +129,15 @@ export default function DetailedScreen() {
               </Text>
             ) : null}
           </View>
+
+          <Divider style={[styles.div, {width: width - 75}]} />
+          <Text
+            style={[styles.text,{color: 'cyan',textDecorationLine: 'underline'}]}
+            onPress={() => {
+              Linking.openURL('https://www.youtube.com/watch?v=QQeB4XQhp2E');
+            }}>
+            Youtube video with instructions
+          </Text>
         </View>
       </View>
     </ScrollView>
