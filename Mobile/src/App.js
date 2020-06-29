@@ -1,6 +1,12 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {StatusBar} from 'react-native';
+
 
 export default function App() {
-  return <Text> eae men </Text>;
+  return (
+    <>
+      <StatusBar backgroundColor="#B1FF92" barStyle="dark-content" />
+      
+    </>
+  );
 }
