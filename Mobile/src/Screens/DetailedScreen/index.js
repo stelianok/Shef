@@ -8,41 +8,40 @@ import {
   useWindowDimensions,
   Linking,
 } from 'react-native';
+import axios from 'axios';
 
 import Icon from 'react-native-vector-icons/Feather';
 import {Divider} from 'react-native-elements';
 
 import styles from './styles';
 
+import ReadLessMore from '../../components/ReadLessMore';
+
 export default function DetailedScreen() {
   const width = useWindowDimensions().width;
 
-  const [textShown, setTextShown] = useState(false); //To show ur remaining Text
-  const [lengthMore, setLengthMore] = useState(false); //to show the "Read more & Less Line"
+  const [area, setArea] = useState('');
+  const [category, setCategory] = useState('');
 
-  const [textShownPrep, setTextShownPrep] = useState(false);
-  const [lengthMorePrep, setlengthMorePrep] = useState(false);
-
-  const toggleNumberOfLines = () => {
-    //To toggle the show text or hide it
-    setTextShown(!textShown);
-  };
-
-  const toggleNumberOfLinesPrep = () => {
-    //To toggle the show text or hide it
-    setTextShownPrep(!textShownPrep);
-  };
-
-  const onTextLayout = useCallback((e) => {
-    setLengthMore(e.nativeEvent.lines.length >= 4); //to check the text is more than 4 lines or not
-    // console.log(e.nativeEvent);
-  }, []);
-
-  const onTextLayoutPrep = useCallback((e) => {
-    setlengthMorePrep(e.nativeEvent.lines.length >= 4); //to check the text is more than 4 lines or not
-    // console.log(e.nativeEvent);
-  }, []);
-
+  async function GetMealByID(id) {
+    await axios
+      .get('https://www.themealdb.com/api/json/v1/1/lookup.php?', {
+        params: {
+          i: id,
+        },
+      })
+      .then(function (response) {
+        console.log(response.data.meals[0]);
+      })
+      .catch(function () {
+        console.log('error');
+      });
+  }
+  function GetDetails() {
+    GetMealByID(52772);
+    console.log(area);
+    console.log(category);
+  }
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -54,7 +53,9 @@ export default function DetailedScreen() {
             />
           </View>
 
-          <Text style={styles.title}>Teriyaki Chicken Casserole</Text>
+          <Text style={styles.title} onPress={GetDetails}>
+            Teriyaki Chicken Casserole
+          </Text>
           <Text style={styles.level}> Intermediate </Text>
           <Divider style={[styles.div, {width: width - 75}]} />
 
@@ -76,63 +77,28 @@ export default function DetailedScreen() {
             <Text style={styles.subtitle}> Ingredients </Text>
             <Icon name={'shopping-cart'} size={36} color={'#B1FF92'} />
           </View>
-          <View>
-            <Text
-              onTextLayout={onTextLayout}
-              numberOfLines={textShown ? undefined : 4}
-              style={[styles.text, {lineHeight: 21, marginLeft: 25}]}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-              suscipit, dui vel convallis elementum, ante ex varius felis, et
-              tempor sem purus quis quam. Integer sit amet luctus neque. Nunc ut
-              sodales orci, in dignissim mauris. Donec tempor, risus quis
-              interdum congue, tellus augue accumsan nulla, non rhoncus purus
-              nibh eget nisl. Maecenas semper, nisl vel imperdiet tempus, odio
-              felis
-            </Text>
-
-            {lengthMore ? (
-              <Text
-                onPress={toggleNumberOfLines}
-                style={[
-                  styles.text,
-                  {lineHeight: 21, fontSize: 15, color: 'cyan'},
-                ]}>
-                {textShown ? 'Read less...' : 'Read more...'}
-              </Text>
-            ) : null}
-          </View>
+          <ReadLessMore
+            longText={
+              ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean suscipit, dui vel convallis elementum, ante ex varius felis, et tempor sem purus quis quam. Integer sit amet luctus neque. Nunc utsodales orci, in dignissim mauris. Donec tempor, risus quisinterdum congue, tellus augue accumsan nulla, non rhoncus purusnibh eget nisl. Maecenas semper, nisl vel imperdiet tempus, odiofelis'
+            }
+            styles={styles.text}
+          />
           <Divider style={[styles.div, {width: width - 75}]} />
 
           <Text style={styles.subtitlePrep}>Preparation Mode</Text>
-          <View>
-            <Text
-              onTextLayout={onTextLayoutPrep}
-              numberOfLines={textShownPrep ? undefined : 4}
-              style={[styles.text, {lineHeight: 21, marginLeft: 20}]}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-              suscipit, dui vel convallis elementum, ante ex varius felis, et
-              tempor sem purus quis quam. Integer sit amet luctus neque. Nunc ut
-              sodales orci, in dignissim mauris. Donec tempor, risus quis
-              interdum congue, tellus augue accumsan nulla, non rhoncus purus
-              nibh eget nisl. Maecenas semper, nisl vel imperdiet tempus, odio
-              felis
-            </Text>
-
-            {lengthMorePrep ? (
-              <Text
-                onPress={toggleNumberOfLinesPrep}
-                style={[
-                  styles.text,
-                  {lineHeight: 21, fontSize: 15, color: 'cyan'},
-                ]}>
-                {textShownPrep ? 'Read less...' : 'Read more...'}
-              </Text>
-            ) : null}
-          </View>
+          <ReadLessMore
+            longText={
+              ' dasdasdorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean suscipit, dui vel convallis elementum, ante ex varius felis, et tempor sem purus quis quam. Integer sit amet luctus neque. Nunc utsodales orci, in dignissim mauris. Donec tempor, risus quisinterdum congue, tellus augue accumsan nulla, non rhoncus purusnibh eget nisl. Maecenas semper, nisl vel imperdiet tempus, odiofelis'
+            }
+            styles={styles.text}
+          />
 
           <Divider style={[styles.div, {width: width - 75}]} />
           <Text
-            style={[styles.text,{color: 'cyan',textDecorationLine: 'underline'}]}
+            style={[
+              styles.text,
+              {color: 'cyan', textDecorationLine: 'underline'},
+            ]}
             onPress={() => {
               Linking.openURL('https://www.youtube.com/watch?v=QQeB4XQhp2E');
             }}>
