@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState, useCallback} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -7,6 +7,7 @@ import {
   Image,
   useWindowDimensions,
   Linking,
+  FlatList,
 } from 'react-native';
 import axios from 'axios';
 
@@ -20,8 +21,16 @@ import ReadLessMore from '../../components/ReadLessMore';
 export default function DetailedScreen() {
   const width = useWindowDimensions().width;
 
+  const [title, setTitle] = useState('');
+  const [level, setLevel] = useState('');
   const [area, setArea] = useState('');
   const [category, setCategory] = useState('');
+  const [tags, setTags] = useState([]);
+  const [preparationMode, setPreparationMode] = useState('');
+  const [ingredients, setIngredients] = useState([]);
+  const [measures, setMeasures] = useState([]);
+  const [link, setLink] = useState('');
+  const [img, setImg] = useState('');
 
   async function GetMealByID(id) {
     await axios
@@ -32,16 +41,37 @@ export default function DetailedScreen() {
       })
       .then(function (response) {
         console.log(response.data.meals[0]);
+        setTitle(response.data.meals[0].strMeal);
+        setTags(response.data.meals[0].strTags.split(','));
+        setCategory(response.data.meals[0].strCategory);
+        setArea(response.data.meals[0].strArea);
+        setImg(response.data.meals[0].strMealThumb);
+        setPreparationMode(response.data.meals[0].strInstructions);
+        setLink(response.data.meals[0].strYoutube);
       })
       .catch(function () {
         console.log('error');
       });
   }
-  function GetDetails() {
+  useEffect(() => {
     GetMealByID(52772);
+    return () => {
+      console.log('nice');
+    };
+  }, []);
+
+  /*
+  function GetDetails() {
+    //GetMealByID(52772);
     console.log(area);
     console.log(category);
+    console.log(img);
+    console.log(link);
+    console.log(preparationMode);
+    console.log(tags);
+    console.log(title);
   }
+  */
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -53,10 +83,8 @@ export default function DetailedScreen() {
             />
           </View>
 
-          <Text style={styles.title} onPress={GetDetails}>
-            Teriyaki Chicken Casserole
-          </Text>
-          <Text style={styles.level}> Intermediate </Text>
+          <Text style={styles.title}>{title}</Text>
+
           <Divider style={[styles.div, {width: width - 75}]} />
 
           <Text style={styles.tagTitle}>#Tags</Text>
