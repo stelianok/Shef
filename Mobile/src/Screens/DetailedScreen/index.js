@@ -30,7 +30,7 @@ export default function DetailedScreen() {
   const [ingredients, setIngredients] = useState([]);
   const [measures, setMeasures] = useState([]);
   const [link, setLink] = useState('');
-  const [img, setImg] = useState('');
+  const [thumbnail, setThumbnail] = useState('');
 
   async function GetMealByID(id) {
     await axios
@@ -40,12 +40,12 @@ export default function DetailedScreen() {
         },
       })
       .then(function (response) {
-        console.log(response.data.meals[0]);
+        //console.log(response.data.meals[0]);
         setTitle(response.data.meals[0].strMeal);
         setTags(response.data.meals[0].strTags.split(','));
         setCategory(response.data.meals[0].strCategory);
         setArea(response.data.meals[0].strArea);
-        setImg(response.data.meals[0].strMealThumb);
+        setThumbnail(response.data.meals[0].strMealThumb);
         setPreparationMode(response.data.meals[0].strInstructions);
         setLink(response.data.meals[0].strYoutube);
       })
@@ -77,10 +77,7 @@ export default function DetailedScreen() {
       <View style={styles.container}>
         <View style={[styles.card, {width: width - 30}]}>
           <View style={styles.imgView}>
-            <Image
-              style={styles.img}
-              source={require('../../../img/placeholder.jpg')}
-            />
+            <Image style={styles.img} source={{uri: thumbnail}} />
           </View>
 
           <Text style={styles.title}>{title}</Text>
@@ -96,8 +93,8 @@ export default function DetailedScreen() {
             <Text style={styles.tagText}> Baked</Text>
           </View>
 
-          <Text style={styles.text}> Category: Chicken </Text>
-          <Text style={styles.text}> Japanese Recipe </Text>
+          <Text style={styles.text}> Category: {category} </Text>
+          <Text style={styles.text}> {area} Recipe </Text>
 
           <Divider style={[styles.div, {width: width - 75}]} />
 
@@ -115,10 +112,8 @@ export default function DetailedScreen() {
 
           <Text style={styles.subtitlePrep}>Preparation Mode</Text>
           <ReadLessMore
-            longText={
-              ' dasdasdorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean suscipit, dui vel convallis elementum, ante ex varius felis, et tempor sem purus quis quam. Integer sit amet luctus neque. Nunc utsodales orci, in dignissim mauris. Donec tempor, risus quisinterdum congue, tellus augue accumsan nulla, non rhoncus purusnibh eget nisl. Maecenas semper, nisl vel imperdiet tempus, odiofelis'
-            }
-            styles={styles.text}
+            longText={preparationMode}
+            styles={[styles.text, {paddingTop: 15}]}
           />
 
           <Divider style={[styles.div, {width: width - 75}]} />
@@ -128,7 +123,7 @@ export default function DetailedScreen() {
               {color: 'cyan', textDecorationLine: 'underline'},
             ]}
             onPress={() => {
-              Linking.openURL('https://www.youtube.com/watch?v=QQeB4XQhp2E');
+              Linking.openURL(link);
             }}>
             Youtube video with instructions
           </Text>
