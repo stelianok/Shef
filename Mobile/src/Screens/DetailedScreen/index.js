@@ -47,6 +47,13 @@ export default function DetailedScreen() {
         setThumbnail(response.data.meals[0].strMealThumb);
         setPreparationMode(response.data.meals[0].strInstructions);
         setLink(response.data.meals[0].strYoutube);
+        GetValues(
+          response.data.meals[0],
+          'strIngredient',
+          setIngredients,
+          ingredients,
+        );
+        GetValues(response.data.meals[0], 'strMeasure', setMeasures, measures);
       })
       .catch(function () {
         console.log('error');
@@ -58,6 +65,18 @@ export default function DetailedScreen() {
       console.log('nice');
     };
   }, []);
+  function GetValues(response, strName, setState, variableState) {
+    for (var [key, value] of Object.entries(response)) {
+      for (var i = 1; i <= 20; i++) {
+        if (key === strName + i) {
+          if (value !== null && value !== '') {
+            //console.log(key, value);
+            setState((variableState) => [...variableState, value]);
+          }
+        }
+      }
+    }
+  }
 
   /*
   function GetDetails() {
@@ -90,6 +109,7 @@ export default function DetailedScreen() {
               renderItem={({item}) => (
                 <Text style={styles.tagText}> {item}</Text>
               )}
+              keyExtractor={(item) => tags.indexOf(item)}
               horizontal={true}
             />
           </View>
