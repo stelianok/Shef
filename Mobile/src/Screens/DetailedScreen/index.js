@@ -22,7 +22,6 @@ export default function DetailedScreen() {
   const width = useWindowDimensions().width;
 
   const [title, setTitle] = useState('');
-  const [level, setLevel] = useState('');
   const [area, setArea] = useState('');
   const [category, setCategory] = useState('');
   const [tags, setTags] = useState([]);
@@ -86,11 +85,13 @@ export default function DetailedScreen() {
 
           <Text style={styles.tagTitle}>#Tags</Text>
           <View style={styles.tagView}>
-            <Text style={styles.tagText}> Chicken</Text>
-            <Text style={styles.tagText}> Baked</Text>
-            <Text style={styles.tagText}> Baked</Text>
-            <Text style={styles.tagText}> Baked</Text>
-            <Text style={styles.tagText}> Baked</Text>
+            <FlatList
+              data={tags}
+              renderItem={({item}) => (
+                <Text style={styles.tagText}> {item}</Text>
+              )}
+              horizontal={true}
+            />
           </View>
 
           <Text style={styles.text}> Category: {category} </Text>
