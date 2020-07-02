@@ -12,7 +12,7 @@ export default function Search()
         inputStyle = {{backgroundColor: 'white'}}
         underlineColorAndroid = '#D6D0D0'
         containerStyle={{backgroundColor: 'white', borderRadius: 25 }}
-        inputContainerStyle={{backgroundColor:'white'}}
+        inputContainerStyle={{backgroundColor:'white', flexDirection:"row-reverse"}}
         searchIcon={{name:'search', size:25, color:'black'}}
       />
     

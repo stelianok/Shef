@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#B4F78C',
         padding:13,
-        marginTop:490
+        
     },
     buttonText: {
         fontSize: 20
