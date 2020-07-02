@@ -3,14 +3,10 @@ import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
     randomButton: {  
-        
+        alignItems: 'center',
         backgroundColor: '#B4F78C',
         padding:13,
-        height: 50,
-        paddingHorizontal:15,
-        alignItems: 'center',
-
-        
+        marginTop:490
     },
     buttonText: {
         fontSize: 20
