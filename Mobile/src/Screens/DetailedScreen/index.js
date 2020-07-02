@@ -64,6 +64,7 @@ export default function DetailedScreen() {
     return () => {
       console.log('nice');
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   function GetValues(response, strName, setState, variableState) {
     for (var [key, value] of Object.entries(response)) {
