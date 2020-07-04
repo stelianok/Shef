@@ -30,15 +30,16 @@ export default function DetailedScreen() {
   const [measures, setMeasures] = useState([]);
   const [link, setLink] = useState('');
   const [thumbnail, setThumbnail] = useState('');
+  const [ingredientsMeasures, setIngredientsMeasures] = useState('');
 
-  async function GetMealByID(id) {
-    await axios
+  function GetMealByID(id) {
+    axios
       .get('https://www.themealdb.com/api/json/v1/1/lookup.php?', {
         params: {
           i: id,
         },
       })
-      .then(function (response) {
+      .then((response) => {
         //console.log(response.data.meals[0]);
         setTitle(response.data.meals[0].strMeal);
         setTags(response.data.meals[0].strTags.split(','));
@@ -54,13 +55,17 @@ export default function DetailedScreen() {
           ingredients,
         );
         GetValues(response.data.meals[0], 'strMeasure', setMeasures, measures);
+        DefineIngredients(measures, ingredients);
       })
-      .catch(function () {
-        console.log('error');
+      .catch((error) => {
+        console.log(error);
       });
   }
   useEffect(() => {
     GetMealByID(52772);
+    //DefineIngredients(measures, ingredients);
+    //setIngredientsMeasures([...ingredientsMeasures, measures[0] + ' ' + ingredients[0] + ',']);
+
     return () => {
       console.log('nice');
     };
@@ -78,10 +83,14 @@ export default function DetailedScreen() {
       }
     }
   }
-
+  function DefineIngredients(measures, ingredients) {
+    console.log(measures, ingredients);
+    setIngredientsMeasures(measures[0]);
+    console.log(ingredientsMeasures);
+  }
   /*
   function GetDetails() {
-    //GetMealByID(52772);
+    //GetMealByID(52772);r
     console.log(area);
     console.log(category);
     console.log(img);
@@ -110,7 +119,7 @@ export default function DetailedScreen() {
               renderItem={({item}) => (
                 <Text style={styles.tagText}> {item}</Text>
               )}
-              keyExtractor={(item) => tags.indexOf(item)}
+              keyExtractor={(item) => tags.indexOf(item).toString()}
               horizontal={true}
             />
           </View>
@@ -124,12 +133,26 @@ export default function DetailedScreen() {
             <Text style={styles.subtitle}> Ingredients </Text>
             <Icon name={'shopping-cart'} size={36} color={'#B1FF92'} />
           </View>
-          <ReadLessMore
-            longText={
-              ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean suscipit, dui vel convallis elementum, ante ex varius felis, et tempor sem purus quis quam. Integer sit amet luctus neque. Nunc utsodales orci, in dignissim mauris. Donec tempor, risus quisinterdum congue, tellus augue accumsan nulla, non rhoncus purusnibh eget nisl. Maecenas semper, nisl vel imperdiet tempus, odiofelis'
-            }
-            styles={styles.text}
-          />
+          <View style={{flexDirection: 'row'}}>
+            <FlatList
+              data={measures}
+              renderItem={({item}) => (
+                <Text style={[styles.text, {fontSize: 18}]}>•{item}</Text>
+              )}
+              keyExtractor={(item, index) => {
+                return item.id;
+              }}
+            />
+            <FlatList
+              data={ingredients}
+              renderItem={({item}) => (
+                <Text style={[styles.text, {fontSize: 18}]}>{item}</Text>
+              )}
+              keyExtractor={(item, index) => {
+                return item.id;
+              }}
+            />
+          </View>
           <Divider style={[styles.div, {width: width - 75}]} />
 
           <Text style={styles.subtitlePrep}>Preparation Mode</Text>
