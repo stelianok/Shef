@@ -10,10 +10,10 @@ export default function Search()
         round
         placeholder = 'Buscar'
         inputStyle = {{backgroundColor: 'white'}}
-        underlineColorAndroid = '#D6D0D0'
-        containerStyle={{backgroundColor: 'white', borderRadius: 25 }}
+  
+        containerStyle={{backgroundColor: 'white', borderRadius: 50  }}
         inputContainerStyle={{backgroundColor:'white', flexDirection:"row-reverse"}}
-        searchIcon={{name:'search', size:25, color:'black'}}
+        searchIcon={{name:'search', size:40, color:'black'}}
       />
     
       

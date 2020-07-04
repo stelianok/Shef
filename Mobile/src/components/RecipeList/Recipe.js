@@ -28,6 +28,8 @@ const styles = StyleSheet.create({
         padding: 15,
         borderTopWidth: 1,
         borderColor: '#B1FF92',
+        width: 250,
+        alignSelf: 'center'
         
     },
     title:{
@@ -38,9 +40,10 @@ const styles = StyleSheet.create({
         paddingBottom: 10
     },
     subtext:{
-        textAlign:'center',
+        textAlign:'left',
         fontSize: 18,
         color:'white',
+        paddingBottom: 1
     }
 })
 
@@ -53,9 +56,9 @@ const Recipe = ({recipe: {image, title, category, origin} } ) => (
         <Text style={styles.title}>{title}</Text>
 
         <View style={styles.infoContainer}>
+             <Text style={styles.subtext}>Category: {category}</Text>
+             <Text style={styles.subtext}>Origin: {origin}</Text>
             
-            <Text style={styles.subtext}>Category: {category}</Text>
-            <Text style={styles.subtext}>Origin: {origin}</Text>
         </View>
     </View>
 );

@@ -10,8 +10,11 @@ import styles from './styles';
 export default function MainScreen(){
     return(
         
-        <View style={styles.container}>     
-            <Search></Search>
+        <View style={styles.container}>   
+            <View style={styles.searchPos}>
+                <Search/>
+            </View>  
+            
             <ScrollView>
                 <Recipe/>    
             </ScrollView>

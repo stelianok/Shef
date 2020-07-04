@@ -3,15 +3,12 @@ import {StyleSheet} from 'react-native'
 const styles = StyleSheet.create({
     container: {
         flex:1,
-        backgroundColor: '#323232',
+        backgroundColor: '#121212',
     },
-    box: {
-        width:100,
-        height:100,
-        backgroundColor:'#4F4F4F',
-    },
-    bottom:{   
-        marginTop:560
+    searchPos:{
+        paddingTop: 10,
+        paddingLeft: 10,
+        paddingRight: 10,
     }
 })
 export default styles;

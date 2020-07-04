@@ -2,21 +2,24 @@ import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
-    randomButton: {  
-        alignItems: 'center',
-        backgroundColor: '#B4F78C',
-        padding:13,
-        
-    },
+
     buttonText: {
+        paddingHorizontal:100,
+        paddingVertical:18,
         fontSize: 20
+    },
+    randomButton:{
+        alignItems: 'center',
+        backgroundColor: '#B1FF92',
     }
+    
 })
 
 export default function RandomButton(){
     return(
-        <View style={styles.randomButton}>
-        <TouchableOpacity>
+       
+        <View>
+         <TouchableOpacity style={styles.randomButton}>
           <Text style={styles.buttonText}>Random Recipe</Text>
         </TouchableOpacity>
       </View>
