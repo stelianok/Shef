@@ -9,9 +9,10 @@ const styles = StyleSheet.create({
         paddingTop: 10,
         paddingLeft: 10,
         paddingRight: 10,
+        
     },
     radioPos:{
-        paddingLeft: 30
+        flexDirection:'column'
     }
 })
 export default styles;

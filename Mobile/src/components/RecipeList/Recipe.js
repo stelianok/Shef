@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     },
     infoContainer:{ 
         padding: 15,
-        borderTopWidth: 1,
+        borderTopWidth: 0.5,
         borderColor: '#B1FF92',
         width: 250,
         alignSelf: 'center'

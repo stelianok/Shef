@@ -31,7 +31,7 @@ export default class components extends Component {
                         title: "title",
                         category: "category",
                         origin: "origin",
-                    }
+                    }, 
             ],
         };
     
