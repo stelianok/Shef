@@ -4,6 +4,7 @@ import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
 import RandomButton from '../../components/RandomButton';
 import Recipe from '../../components/RecipeData';   
 import Search from '../../components/Search';
+import RadioFilter from '../../components/RadioFilter';
 
 import styles from './styles';
 
@@ -15,6 +16,10 @@ export default function MainScreen(){
                 <Search/>
             </View>  
             
+            <View style={styles.radioPos}>
+                <RadioFilter/>
+            </View>
+
             <ScrollView>
                 <Recipe/>    
             </ScrollView>

@@ -2,6 +2,7 @@ import React from 'react';
 import {StatusBar} from 'react-native';
 
 import MainScreen from './screens/MainScreen'
+import DetailedScreen from './screens/DetailedScreen'
 
 export default function App() {
   return (
