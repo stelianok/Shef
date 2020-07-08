@@ -1,25 +1,24 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet,useWindowDimensions} from 'react-native';
 
 const styles = StyleSheet.create({
 
     buttonText: {
-        paddingHorizontal:100,
         paddingVertical:18,
         fontSize: 20
     },
     randomButton:{
         alignItems: 'center',
         backgroundColor: '#B1FF92',
+        
     }
     
 })
-
 export default function RandomButton(){
+    const width = useWindowDimensions().width;
     return(
-       
         <View>
-         <TouchableOpacity style={styles.randomButton}>
+         <TouchableOpacity style={[styles.randomButton, {width: width}]}>
           <Text style={styles.buttonText}>Random Recipe</Text>
         </TouchableOpacity>
       </View>
