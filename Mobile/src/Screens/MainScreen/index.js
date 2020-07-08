@@ -19,10 +19,13 @@ export default function MainScreen(){
             <View style={styles.radioPos}>
                 <RadioFilter/>
             </View>
-
+            <View style={styles.scroll}>
             <ScrollView>
-                <Recipe/>    
+                <Recipe/>
+                <Recipe/> 
+                <Recipe/>     
             </ScrollView>
+            </View>
             <RandomButton></RandomButton>
         </View>
        

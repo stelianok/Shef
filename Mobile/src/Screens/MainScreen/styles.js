@@ -12,6 +12,10 @@ const styles = StyleSheet.create({
     },
     radioPos:{
         paddingLeft: 30
+    },
+    scroll: {
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 })
 export default styles;
