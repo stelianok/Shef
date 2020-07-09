@@ -25,7 +25,7 @@ export default function MainScreen(){
                  //console.log(response.data.meals);
                  
                  setData([response.data.meals]);
-                 console.log(data);
+                 
             }) 
             .catch((error) => {
                 console.log(error);
@@ -41,7 +41,7 @@ export default function MainScreen(){
                  //console.log(response.data.meals);
                  
                  setData([response.data.meals]);
-                 console.log(data);
+                 
             }) 
             .catch((error) => {
                 console.log(error);
@@ -57,7 +57,7 @@ export default function MainScreen(){
                  console.log(response.data.meals);
                  
                  setData([response.data.meals]);
-                 console.log(data);
+                 
             }) 
             .catch((error) => {
                 console.log(error);
@@ -88,7 +88,6 @@ export default function MainScreen(){
                 <FlatList
                     data={data[0]}
                     renderItem={({item}) => (
-                        console.log(data[0]),
                         <Recipe _id={item.idMeal} _title={item.strMeal}  _img={item.strMealThumb}/>
                     )}
                     keyExtractor={item => item.idMeal}
