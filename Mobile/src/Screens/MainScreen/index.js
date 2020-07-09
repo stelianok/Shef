@@ -24,7 +24,7 @@ export default function MainScreen(){
             .then((response) => {
                  //console.log(response.data.meals);
                  
-                 setData([...data,response.data.meals]);
+                 setData([response.data.meals]);
                  console.log(data);
             }) 
             .catch((error) => {
@@ -40,7 +40,7 @@ export default function MainScreen(){
             .then((response) => {
                  //console.log(response.data.meals);
                  
-                 setData([...data,response.data.meals]);
+                 setData([response.data.meals]);
                  console.log(data);
             }) 
             .catch((error) => {
@@ -56,7 +56,7 @@ export default function MainScreen(){
             .then((response) => {
                  console.log(response.data.meals);
                  
-                 setData([...data,response.data.meals]);
+                 setData([response.data.meals]);
                  console.log(data);
             }) 
             .catch((error) => {
@@ -69,8 +69,8 @@ export default function MainScreen(){
     }
     useEffect(() => {
         //FilterBy('Area', 'Japanese')
-        //FilterBy('Category', 'Dessert')
-        FilterBy('Name', 'Arrabiata')
+        FilterBy('Category', 'Dessert')
+        //FilterBy('Name', 'Arrabiata')
         return () => {
             console.log('Everything ok');
         }

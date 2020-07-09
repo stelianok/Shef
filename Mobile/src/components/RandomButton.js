@@ -10,6 +10,9 @@ const styles = StyleSheet.create({
     randomButton:{
         alignItems: 'center',
         backgroundColor: '#B1FF92',
+
+        position: 'absolute',
+        bottom: -2,
         
     }
     
@@ -17,11 +20,11 @@ const styles = StyleSheet.create({
 export default function RandomButton(){
     const width = useWindowDimensions().width;
     return(
-        <View>
+        <>
          <TouchableOpacity style={[styles.randomButton, {width: width}]}>
           <Text style={styles.buttonText}>Random Recipe</Text>
-        </TouchableOpacity>
-      </View>
+         </TouchableOpacity>
+        </>
 
     );
 }
