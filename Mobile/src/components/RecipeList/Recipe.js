@@ -1,18 +1,23 @@
 import React,{useState,useEffect} from 'react';
 
-import {View, Text, StyleSheet, Image, useWindowDimensions} from 'react-native';
+import {View, Text,TouchableOpacity, StyleSheet, Image, useWindowDimensions} from 'react-native';
 
 import {Divider} from 'react-native-elements';
 
-export default function Recipe({_img,_title,}){
+export default function Recipe({_img,_title,_id}){
 
+    const [id, setId] = useState(_id);
     const [image, setImage] = useState(_img);
     const [title, setTitle] = useState(_title);
-
 
     const width = useWindowDimensions().width;
     return(
         <View style={[styles.container,{width: width - 60}]}>
+        <TouchableOpacity 
+        style={{flex: 1}}
+        onPress={() => {
+            console.log('pressed!');
+        }}>
         <View style={styles.imageContainer}>
             <Image source={{uri:image}} style={styles.image}/>
         </View>
@@ -20,6 +25,7 @@ export default function Recipe({_img,_title,}){
         <Text style={styles.title}>{title}</Text>
 
         <Divider style={[styles.div, {width: width - 100}]} />
+        </TouchableOpacity>
     </View>
     )
 }

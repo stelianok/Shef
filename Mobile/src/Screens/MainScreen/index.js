@@ -32,18 +32,45 @@ export default function MainScreen(){
             })
         }
         else if(filter === 'Category'){
-
+            await axios.get('https://www.themealdb.com/api/json/v1/1/filter.php?', {
+                params: {
+                    c: param,
+                },
+            })
+            .then((response) => {
+                 //console.log(response.data.meals);
+                 
+                 setData([...data,response.data.meals]);
+                 console.log(data);
+            }) 
+            .catch((error) => {
+                console.log(error);
+            })
         }
         else if(filter === 'Name'){
-
+            await axios.get('https://www.themealdb.com/api/json/v1/1/search.php?', {
+                params: {
+                    s: param,
+                },
+            })
+            .then((response) => {
+                 console.log(response.data.meals);
+                 
+                 setData([...data,response.data.meals]);
+                 console.log(data);
+            }) 
+            .catch((error) => {
+                console.log(error);
+            })
         }
         else {
             console.log('invalid filter');
         }
     }
     useEffect(() => {
-        FilterBy('Area', 'Japanese')
-       
+        //FilterBy('Area', 'Japanese')
+        //FilterBy('Category', 'Dessert')
+        FilterBy('Name', 'Arrabiata')
         return () => {
             console.log('Everything ok');
         }
@@ -61,7 +88,8 @@ export default function MainScreen(){
                 <FlatList
                     data={data[0]}
                     renderItem={({item}) => (
-                        <Recipe _title={item.strMeal}  _img={item.strMealThumb}/>
+                        console.log(data[0]),
+                        <Recipe _id={item.idMeal} _title={item.strMeal}  _img={item.strMealThumb}/>
                     )}
                     keyExtractor={item => item.idMeal}
                     extraData={data}
