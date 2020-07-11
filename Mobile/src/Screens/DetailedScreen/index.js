@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {
   View,
   Text,
@@ -9,7 +9,6 @@ import {
   Linking,
   FlatList,
 } from 'react-native';
-import axios from 'axios';
 
 import Icon from 'react-native-vector-icons/Feather';
 import {Divider} from 'react-native-elements';
@@ -18,88 +17,19 @@ import styles from './styles';
 
 import ReadLessMore from '../../components/ReadLessMore';
 
-export default function DetailedScreen() {
+export default function DetailedScreen({route, navigation}) {
   const width = useWindowDimensions().width;
 
-  const [title, setTitle] = useState('');
-  const [area, setArea] = useState('');
-  const [category, setCategory] = useState('');
-  const [tags, setTags] = useState([]);
-  const [preparationMode, setPreparationMode] = useState('');
-  const [ingredients, setIngredients] = useState([]);
-  const [measures, setMeasures] = useState([]);
-  const [link, setLink] = useState('');
-  const [thumbnail, setThumbnail] = useState('');
-  const [ingredientsMeasures, setIngredientsMeasures] = useState('');
+  const {title} = route.params;
+  const {area} = route.params;
+  const {category} = route.params;
+  const {tags} = route.params;
+  const {preparationMode} = route.params;
+  const {ingredients} = route.params;
+  const {measures} = route.params;
+  const {link} = route.params;
+  const {thumbnail} = route.params;
 
-  function GetMealByID(id) {
-    axios
-      .get('https://www.themealdb.com/api/json/v1/1/lookup.php?', {
-        params: {
-          i: id,
-        },
-      })
-      .then((response) => {
-        //console.log(response.data.meals[0]);
-        setTitle(response.data.meals[0].strMeal);
-        setTags(response.data.meals[0].strTags.split(','));
-        setCategory(response.data.meals[0].strCategory);
-        setArea(response.data.meals[0].strArea);
-        setThumbnail(response.data.meals[0].strMealThumb);
-        setPreparationMode(response.data.meals[0].strInstructions);
-        setLink(response.data.meals[0].strYoutube);
-        GetValues(
-          response.data.meals[0],
-          'strIngredient',
-          setIngredients,
-          ingredients,
-        );
-        GetValues(response.data.meals[0], 'strMeasure', setMeasures, measures);
-        DefineIngredients(measures, ingredients);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-  useEffect(() => {
-    GetMealByID(52772);
-    //DefineIngredients(measures, ingredients);
-    //setIngredientsMeasures([...ingredientsMeasures, measures[0] + ' ' + ingredients[0] + ',']);
-
-    return () => {
-      console.log('nice');
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  function GetValues(response, strName, setState, variableState) {
-    for (var [key, value] of Object.entries(response)) {
-      for (var i = 1; i <= 20; i++) {
-        if (key === strName + i) {
-          if (value !== null && value !== '') {
-            //console.log(key, value);
-            setState((variableState) => [...variableState, value]);
-          }
-        }
-      }
-    }
-  }
-  function DefineIngredients(measures, ingredients) {
-    console.log(measures, ingredients);
-    setIngredientsMeasures(measures[0]);
-    console.log(ingredientsMeasures);
-  }
-  /*
-  function GetDetails() {
-    //GetMealByID(52772);r
-    console.log(area);
-    console.log(category);
-    console.log(img);
-    console.log(link);
-    console.log(preparationMode);
-    console.log(tags);
-    console.log(title);
-  }
-  */
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -139,18 +69,12 @@ export default function DetailedScreen() {
               renderItem={({item}) => (
                 <Text style={[styles.text, {fontSize: 18}]}>•{item}</Text>
               )}
-              keyExtractor={(item, index) => {
-                return item.id;
-              }}
             />
             <FlatList
               data={ingredients}
               renderItem={({item}) => (
                 <Text style={[styles.text, {fontSize: 18}]}>{item}</Text>
               )}
-              keyExtractor={(item, index) => {
-                return item.id;
-              }}
             />
           </View>
           <Divider style={[styles.div, {width: width - 75}]} />
