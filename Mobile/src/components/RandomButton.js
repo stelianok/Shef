@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import {
-  View,
   Text,
-  TouchableOpacity,
+  TouchableHighlight,
   StyleSheet,
   useWindowDimensions,
 } from 'react-native';
@@ -17,7 +16,6 @@ const styles = StyleSheet.create({
   randomButton: {
     alignItems: 'center',
     backgroundColor: '#B1FF92',
-
     position: 'absolute',
     bottom: -2,
   },
@@ -39,8 +37,9 @@ export default function RandomButton({navigation}) {
   }
   return (
     <>
-      <TouchableOpacity
+      <TouchableHighlight
         style={[styles.randomButton, {width: width}]}
+        underlayColor={'#6FB354'}
         onPress={async () => {
           await RandomRecipe();
           navigation.navigate('DetailedRecipe', {
@@ -48,7 +47,7 @@ export default function RandomButton({navigation}) {
           });
         }}>
         <Text style={styles.buttonText}>Random Recipe</Text>
-      </TouchableOpacity>
+      </TouchableHighlight>
     </>
   );
 }

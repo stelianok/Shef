@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
+import React from 'react';
 
 import {
   View,
@@ -13,7 +13,6 @@ import {Divider} from 'react-native-elements';
 
 export default function Recipe({_img, _title, _id, navigation}) {
   const width = useWindowDimensions().width;
-
 
   return (
     <View style={[styles.container, {width: width - 60}]}>
