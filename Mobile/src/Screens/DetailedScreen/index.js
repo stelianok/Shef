@@ -1,5 +1,6 @@
+/* eslint-disable no-shadow */
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -9,6 +10,8 @@ import {
   Linking,
   FlatList,
 } from 'react-native';
+
+import axios from 'axios';
 
 import Icon from 'react-native-vector-icons/Feather';
 import {Divider} from 'react-native-elements';
@@ -20,16 +23,84 @@ import ReadLessMore from '../../components/ReadLessMore';
 export default function DetailedScreen({route, navigation}) {
   const width = useWindowDimensions().width;
 
-  const {title} = route.params;
-  const {area} = route.params;
-  const {category} = route.params;
-  const {tags} = route.params;
-  const {preparationMode} = route.params;
-  const {ingredients} = route.params;
-  const {measures} = route.params;
-  const {link} = route.params;
-  const {thumbnail} = route.params;
+  const {_id} = route.params;
+  const [title, setTitle] = useState('');
+  const [area, setArea] = useState('');
+  const [category, setCategory] = useState('');
+  const [tags, setTags] = useState([]);
+  const [preparationMode, setPreparationMode] = useState('');
+  const [ingredients, setIngredients] = useState([]);
+  const [measures, setMeasures] = useState([]);
+  const [link, setLink] = useState('');
+  const [thumbnail, setThumbnail] = useState('');
 
+  function GetValues(response, strName, setState, variableState) {
+    for (var [key, value] of Object.entries(response)) {
+      for (var i = 1; i <= 20; i++) {
+        if (key === strName + i) {
+          if (value !== null && value !== '') {
+            //console.log(key, value);
+            setState((variableState) => [...variableState, value]);
+          }
+        }
+      }
+    }
+  }
+  function idGenerator() {
+    var S4 = function () {
+      return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+    };
+    return (
+      S4() +
+      S4() +
+      '-' +
+      S4() +
+      '-' +
+      S4() +
+      '-' +
+      S4() +
+      '-' +
+      S4() +
+      S4() +
+      S4()
+    );
+  }
+  async function GetMealByID(id) {
+    await axios
+      .get('https://www.themealdb.com/api/json/v1/1/lookup.php?', {
+        params: {
+          i: id,
+        },
+      })
+      .then((response) => {
+        //console.log(response.data.meals[0]);
+
+        setTitle(response.data.meals[0].strMeal);
+        setTags(response.data.meals[0].strTags.split(','));
+        setCategory(response.data.meals[0].strCategory);
+        setArea(response.data.meals[0].strArea);
+        setThumbnail(response.data.meals[0].strMealThumb);
+        setPreparationMode(response.data.meals[0].strInstructions);
+        setLink(response.data.meals[0].strYoutube);
+        GetValues(
+          response.data.meals[0],
+          'strIngredient',
+          setIngredients,
+          ingredients,
+        );
+        GetValues(response.data.meals[0], 'strMeasure', setMeasures, measures);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+  useEffect(() => {
+    GetMealByID(_id);
+    return () => {
+      console.log('nice');
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -69,12 +140,18 @@ export default function DetailedScreen({route, navigation}) {
               renderItem={({item}) => (
                 <Text style={[styles.text, {fontSize: 18}]}>•{item}</Text>
               )}
+              keyExtractor={(item, index) => {
+                return item.id;
+              }}
             />
             <FlatList
               data={ingredients}
               renderItem={({item}) => (
                 <Text style={[styles.text, {fontSize: 18}]}>{item}</Text>
               )}
+              keyExtractor={(item, index) => {
+                return item.id;
+              }}
             />
           </View>
           <Divider style={[styles.div, {width: width - 75}]} />

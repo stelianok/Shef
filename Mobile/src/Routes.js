@@ -13,8 +13,31 @@ export default function Routes() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Feed" component={MainScreen} />
-        <Stack.Screen name="DetailedRecipe" component={DetailedScreen} />
+        <Stack.Screen
+          name="Feed"
+          component={MainScreen}
+          options={{
+            headerStyle: {
+              backgroundColor: '#B1FF92',
+            },
+            headerTitleStyle: {
+              alignSelf: 'center',
+              fontSize: 24,
+            },
+          }}
+        />
+        <Stack.Screen
+          name="DetailedRecipe"
+          component={DetailedScreen}
+          options={{
+            headerStyle: {
+              backgroundColor: '#B1FF92',
+            },
+            headerTitleStyle: {
+              fontSize: 24,
+            },
+          }}
+        />
         <Stack.Screen name="Recipe" component={Recipe} />
       </Stack.Navigator>
     </NavigationContainer>
