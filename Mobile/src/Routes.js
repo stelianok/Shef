@@ -8,6 +8,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import DetailedScreen from './Screens/DetailedScreen';
 import MainScreen from './Screens/MainScreen';
 import Recipe from './components/RecipeList/Recipe';
+import RandomButton from './components/RandomButton';
 const Stack = createStackNavigator();
 export default function Routes() {
   return (
@@ -39,6 +40,7 @@ export default function Routes() {
           }}
         />
         <Stack.Screen name="Recipe" component={Recipe} />
+        <Stack.Screen name="RandomButton" component={RandomButton} />
       </Stack.Navigator>
     </NavigationContainer>
   );

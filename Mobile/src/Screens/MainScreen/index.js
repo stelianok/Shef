@@ -96,7 +96,7 @@ export default function MainScreen({navigation}) {
           style={{marginBottom: 75}}
         />
       </SafeAreaView>
-      <RandomButton />
+      <RandomButton navigation={navigation} />
     </View>
   );
 }

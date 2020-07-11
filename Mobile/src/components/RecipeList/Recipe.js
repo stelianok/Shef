@@ -14,8 +14,7 @@ import {Divider} from 'react-native-elements';
 export default function Recipe({_img, _title, _id, navigation}) {
   const width = useWindowDimensions().width;
 
-  const [title, setTitle] = useState(_title);
-  const [thumbnail, setThumbnail] = useState(_img);
+
   return (
     <View style={[styles.container, {width: width - 60}]}>
       <TouchableOpacity
@@ -26,10 +25,10 @@ export default function Recipe({_img, _title, _id, navigation}) {
           });
         }}>
         <View style={styles.imageContainer}>
-          <Image source={{uri: thumbnail}} style={styles.image} />
+          <Image source={{uri: _img}} style={styles.image} />
         </View>
 
-        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.title}>{_title}</Text>
 
         <Divider style={[styles.div, {width: width - 100}]} />
       </TouchableOpacity>
