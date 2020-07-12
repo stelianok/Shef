@@ -4,16 +4,22 @@ import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 const styles = StyleSheet.create({
     textStyle:{
         fontSize:18,
-        color:'white',
+        alignSelf:'center'
     },
     container:
     {   
         flexDirection:'row',
-        justifyContent:'space-between',
+        justifyContent: 'space-between',
 
     },
     buttonStyle:{
-        padding: 10
+        backgroundColor: '#B1FF92',
+        padding:10,
+        borderRadius:30,
+        width: 100,
+        textAlign: 'center',
+        marginBottom: 15
+        
     },
     titleStyle:{
         paddingTop: 5,
@@ -21,11 +27,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     div:{
-        borderTopWidth: 1,
+        borderTopWidth: 0.5,
         borderColor: '#B1FF92',
-        width: 250,
-        alignSelf: 'center'
+        width: 150,
+        alignSelf: 'center',
+        paddingVertical:5
+    },
+    titleText:{
+        fontSize:18,
+        color: 'white',
+        paddingBottom:10
     }
+    
 });
 
 export default function RadioFilter(){
@@ -33,9 +46,10 @@ export default function RadioFilter(){
         <View>
             
             <View style={styles.titleStyle}>
-                
-                 <Text style={styles.textStyle}>Filter by:</Text>
+                 <Text style={styles.titleText}>Filter by:</Text>
+                 <View style={styles.div}></View>
             </View>
+
 
             <View style={styles.container}>
                 <TouchableOpacity style={styles.buttonStyle}> 
