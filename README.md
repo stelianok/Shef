@@ -9,6 +9,9 @@
 
 - [React](https://reactjs.org)
 - [React Native](https://facebook.github.io/react-native/)
+
+---
+
 ## Table of Contents 🛰
 
 - [About](##About)
@@ -17,6 +20,9 @@
 - [Contributing](##Contributing)
 - [Team](##Team)
 - [Contact](##Contact)
+- [License](##License)
+
+
 ## About 📖
 
 ### Description
@@ -25,6 +31,8 @@ the user can see all his recipes, filter them by name,area or origin, see a reci
 or  he can also choose to see a random recipe. 
 ### Objective
 The project was developed with the intention to improve our knowledge about react,react native and also learn how to consume a third party api.
+
+---
 
 ## Installation 👷‍♂️
 
@@ -36,12 +44,16 @@ inside the folder mobile, run:
 ### Starting the development server
 `yarn start` or `react-native start`
 
+---
+
 ## Features 🛠✨
 
 - User can see recipes in a feed
 - User can filter recipes by category (chicken,dessert...), origin (Japanese,Portuguese) or name (arrabiata, chicken casserole, etc...)
 - User can see a random recipe
 - User can see a recipe with full details
+
+---
 
 ## Contributing 🤗
 
@@ -63,10 +75,15 @@ inside the folder mobile, run:
 - 🐱‍💻 Create a branch called feature/yourFeatureName
 - 🔃 Create a new pull request using <a href="https://github.com/GabrielIshibashi/Shef.git/" target="_blank">`https://github.com/GabrielIshibashi/Shef.git/`</a>.
 
+---
+
 ## Team 👨‍💻
 | <a href="https://github.com/stelianok" target="_blank">**Kauã Steliano**</a> | <a href="https://github.com/GabrielIshibashi" target="_blank">**Gabriel Ishibashi**</a>
 | :---: |:---:|
 | [![Kauã Steliano](https://avatars0.githubusercontent.com/u/39469125?s=460&u=ffe5b02120cf0c761931731569682b9ce1514102&v=4?v=3&s=200)](https://github.com/stelianok)    | [![Gabriel Ishibashi](https://avatars3.githubusercontent.com/u/58631378?s=800&u=d1fea05f883cca3019fa8ac04aac8b4b6390279a&v=4?)](https://github.com/GabrielIshibashi)
+
+---
+
 ## Contact 💼
 
 ### Gabriel Ishibashi
@@ -85,11 +102,11 @@ stelianok@gmail.com
 Github: 
 [Stelianok](https://github.com/stelianok)
 
+---
 
+## License
 
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
-
-
-
-
-
+- **[MIT license](http://opensource.org/licenses/mit-license.php)**
+- Copyright 2015 © <a href="http://fvcproductions.com" target="_blank">FVCproductions</a>.
