@@ -1,5 +1,9 @@
 import React from 'react';
+<<<<<<< HEAD
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
+=======
+
+>>>>>>> 255e17123a71f40777142205384617bbee469fc2
 
 const styles = StyleSheet.create({
     textStyle:{
