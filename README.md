@@ -14,13 +14,13 @@
 
 ## Table of Contents 🛰
 
-- [About 📖](##About)
-- [Installation 👷‍♂️](##Installation)
-- [Features 🛠✨](##Features)
-- [Contributing 🤗](##Contributing)
-- [Team 👨‍💻](##Team)
-- [Contact 💼](##Contact)
-- [License 👨‍⚖️](##License)
+- [About 📖](#About)
+- [Installation 👷‍♂️](#Installation)
+- [Features 🛠✨](#Features)
+- [Contributing 🤗](#Contributing)
+- [Team 👨‍💻](#Team)
+- [Contact 💼](#Contact)
+- [License 👨‍⚖️](#License)
 
 
 ## About 📖
