@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect} from 'react';
 import {View, SafeAreaView, FlatList} from 'react-native';
 
 import RandomButton from '../../components/RandomButton';
+=======
+import React from 'react';
+import {View, Text} from 'react-native';
+>>>>>>> 2a5600ae7bb95269547e512806a55a970ac5809e
 
 import axios from 'axios';
 
@@ -11,6 +16,7 @@ import RadioFilter from '../../components/RadioFilter';
 import Recipe from '../../components/RecipeList/Recipe';
 import styles from './styles';
 
+<<<<<<< HEAD
 export default function MainScreen({navigation}) {
   const [data, setData] = useState([]);
   const [searchParam, setSearchParam] = useState(recipeName);
@@ -105,3 +111,14 @@ export default function MainScreen({navigation}) {
     </View>
   );
 }
+=======
+export default function MainScreen(){
+    return(
+        <View style={styles.container}>
+            <Text>
+               Main Screen
+            </Text>
+        </View>
+    )
+}
+>>>>>>> 2a5600ae7bb95269547e512806a55a970ac5809e
