@@ -3,7 +3,8 @@
 <img src="https://octodex.github.com/images/gobbleotron.gif" align="center" width="400" height="400"></img>
 </p>
 
- ![Feed](https://i.imgur.com/P3JUhvT.gif)  ![DetailedScreen](https://i.imgur.com/H4rjQKY.gif) ![RandomButton](https://i.imgur.com/igCrZo1.gif)  
+ ![Search](https://i.imgur.com/P3JUhvT.gif)  ![DetailedScreen](https://i.imgur.com/H4rjQKY.gif) ![RandomButton](https://i.imgur.com/igCrZo1.gif)  
+ ![Feed](https://i.imgur.com/dd87IrI.gifv)
  
 ## Technologies :rocket: 
 ### This project was developed with the following technologies
