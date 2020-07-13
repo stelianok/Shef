@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   Text,
   TouchableHighlight,
@@ -18,7 +18,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#B1FF92',
     position: 'absolute',
     bottom: -2,
-
   },
 });
 export default function RandomButton({navigation}) {

@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState, useEffect, Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, SafeAreaView, FlatList} from 'react-native';
 
 import RandomButton from '../../components/RandomButton';
@@ -13,6 +13,8 @@ import styles from './styles';
 
 export default function MainScreen({navigation}) {
   const [data, setData] = useState([]);
+  const [searchParam, setSearchParam] = useState(recipeName);
+  const [filterby, setFilterby] = useState('Name');
   async function FilterBy(filter, param) {
     if (filter === 'Area') {
       await axios
@@ -65,25 +67,22 @@ export default function MainScreen({navigation}) {
   }
 
   useEffect(() => {
-      //FilterBy('Area', 'Japanese');
+    //FilterBy('Area', 'Japanese');
     //FilterBy('Category', 'Dessert');
-    FilterBy('Name', recipeName)
+    FilterBy('Name', recipeName);
     return () => {
       console.log('Everything ok');
       console.log(recipeName);
-      
     };
-  }, []);
-
-  FilterBy('Name', recipeName);
-  
+  }, [searchParam]);
+  //FilterBy('Name', recipeName);
   return (
     <View style={styles.container}>
       <View style={styles.searchPos}>
-        <Search/>
+        <Search filterby={filterby} />
       </View>
       <View style={styles.radioPos}>
-        <RadioFilter/>
+        <RadioFilter filterBy={FilterBy} />
       </View>
 
       <SafeAreaView style={styles.scroll}>
