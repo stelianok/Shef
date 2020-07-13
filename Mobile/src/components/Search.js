@@ -7,13 +7,14 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 Icon.loadFont();
 
-export var recipeName = [];
+export var recipeName = '';
 export function Search() {
   const [searchText, UpdateSearch] = useState(recipeName);
   useEffect(() => {
     recipeName = searchText;
     return () => {
       console.log('nice');
+      console.log(recipeName);
     };
   }, [searchText]);
   return (

@@ -13,6 +13,8 @@ import styles from './styles';
 
 export default function MainScreen({navigation}) {
   const [data, setData] = useState([]);
+  const [searchParam, setSearchParam] = useState(recipeName);
+  const [filterby, setFilterby] = useState('Name');
   async function FilterBy(filter, param) {
     if (filter === 'Area') {
       await axios
@@ -72,12 +74,12 @@ export default function MainScreen({navigation}) {
       console.log('Everything ok');
       console.log(recipeName);
     };
-  }, []);
-  FilterBy('Name', recipeName);
+  }, [searchParam]);
+  //FilterBy('Name', recipeName);
   return (
     <View style={styles.container}>
       <View style={styles.searchPos}>
-        <Search />
+        <Search filterby={filterby} />
       </View>
       <View style={styles.radioPos}>
         <RadioFilter />

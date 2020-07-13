@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 
 const styles = StyleSheet.create({
@@ -37,7 +37,16 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function RadioFilter() {
+export default function RadioFilter({FilterBy}) {
+  const [isNameButtonActive, setIsNameButtonActive] = useState(true);
+  const [isCategoryButtonActive, setIsCategoryButtonActive] = useState(false);
+  const [isOriginButtonActive, setIsOriginButtonActive] = useState(false);
+
+  function Pressed(setActiveButton, setDeactiveButton1, setDeactiveButton2) {
+    setActiveButton(true);
+    setDeactiveButton1(false);
+    setDeactiveButton2(false);
+  }
   return (
     <View>
       <View style={styles.titleStyle}>
@@ -46,15 +55,54 @@ export default function RadioFilter() {
       </View>
 
       <View style={styles.container}>
-        <TouchableOpacity style={styles.buttonStyle}>
+        <TouchableOpacity
+          style={[
+            styles.buttonStyle,
+            isNameButtonActive
+              ? {backgroundColor: '#B1FF92'}
+              : {backgroundColor: '#4C7A3A'},
+          ]}
+          onPress={() => {
+            Pressed(
+              setIsNameButtonActive,
+              setIsCategoryButtonActive,
+              setIsOriginButtonActive,
+            );
+          }}>
           <Text style={styles.textStyle}>Name</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.buttonStyle}>
+        <TouchableOpacity
+          style={[
+            styles.buttonStyle,
+            isCategoryButtonActive
+              ? {backgroundColor: '#B1FF92'}
+              : {backgroundColor: '#4C7A3A'},
+          ]}
+          onPress={() => {
+            Pressed(
+              setIsCategoryButtonActive,
+              setIsNameButtonActive,
+              setIsOriginButtonActive,
+            );
+          }}>
           <Text style={styles.textStyle}>Category</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.buttonStyle}>
+        <TouchableOpacity
+          style={[
+            styles.buttonStyle,
+            isOriginButtonActive
+              ? {backgroundColor: '#B1FF92'}
+              : {backgroundColor: '#4C7A3A'},
+          ]}
+          onPress={() => {
+            Pressed(
+              setIsOriginButtonActive,
+              setIsNameButtonActive,
+              setIsCategoryButtonActive,
+            );
+          }}>
           <Text style={styles.textStyle}>Origin</Text>
         </TouchableOpacity>
       </View>
