@@ -3,14 +3,23 @@
 <img src="https://octodex.github.com/images/gobbleotron.gif" align="center" width="400" height="400"></img>
 </p>
 
+![Search](https://i.imgur.com/P3JUhvT.gif)  ![DetailedScreen](https://i.imgur.com/H4rjQKY.gif) 
 
+
+![RandomButton](https://i.imgur.com/igCrZo1.gif) ![Feed](https://i.imgur.com/dd87IrI.gif)  
+ 
+ 
 ## Technologies :rocket: 
 ### This project was developed with the following technologies
 
 - [React](https://reactjs.org)
 - [React Native](https://facebook.github.io/react-native/)
 
+
+
 ---
+
+
 
 ## Table of Contents 🛰
 
