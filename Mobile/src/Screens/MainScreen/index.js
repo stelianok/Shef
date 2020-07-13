@@ -6,13 +6,15 @@ import RandomButton from '../../components/RandomButton';
 
 import axios from 'axios';
 
-import Search from '../../components/Search';
+import {Search, recipeName} from '../../components/Search';
 import RadioFilter from '../../components/RadioFilter';
 import Recipe from '../../components/RecipeList/Recipe';
 import styles from './styles';
 
 export default function MainScreen({navigation}) {
   const [data, setData] = useState([]);
+  const [searchParam, setSearchParam] = useState(recipeName);
+  const [filterby, setFilterby] = useState('Name');
   async function FilterBy(filter, param) {
     if (filter === 'Area') {
       await axios
@@ -63,21 +65,24 @@ export default function MainScreen({navigation}) {
       console.log('invalid filter');
     }
   }
+
   useEffect(() => {
-    //FilterBy('Area', 'Japanese')
-    FilterBy('Category', 'Dessert');
-    //FilterBy('Name', 'Arrabiata')
+    //FilterBy('Area', 'Japanese');
+    //FilterBy('Category', 'Dessert');
+    FilterBy('Name', recipeName);
     return () => {
       console.log('Everything ok');
+      console.log(recipeName);
     };
-  }, []);
+  }, [searchParam]);
+  //FilterBy('Name', recipeName);
   return (
     <View style={styles.container}>
       <View style={styles.searchPos}>
-        <Search />
+        <Search filterby={filterby} />
       </View>
       <View style={styles.radioPos}>
-        <RadioFilter />
+        <RadioFilter filterBy={FilterBy} />
       </View>
 
       <SafeAreaView style={styles.scroll}>
