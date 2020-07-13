@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect} from 'react';
 import {
@@ -9,6 +10,7 @@ import {
   Linking,
   FlatList,
 } from 'react-native';
+
 import axios from 'axios';
 
 import Icon from 'react-native-vector-icons/Feather';
@@ -18,9 +20,10 @@ import styles from './styles';
 
 import ReadLessMore from '../../components/ReadLessMore';
 
-export default function DetailedScreen() {
+export default function DetailedScreen({route, navigation}) {
   const width = useWindowDimensions().width;
 
+  const {_id} = route.params;
   const [title, setTitle] = useState('');
   const [area, setArea] = useState('');
   const [category, setCategory] = useState('');
@@ -30,10 +33,40 @@ export default function DetailedScreen() {
   const [measures, setMeasures] = useState([]);
   const [link, setLink] = useState('');
   const [thumbnail, setThumbnail] = useState('');
-  const [ingredientsMeasures, setIngredientsMeasures] = useState('');
 
-  function GetMealByID(id) {
-    axios
+  function GetValues(response, strName, setState, variableState) {
+    for (var [key, value] of Object.entries(response)) {
+      for (var i = 1; i <= 20; i++) {
+        if (key === strName + i) {
+          if (value !== null && value !== '') {
+            //console.log(key, value);
+            setState((variableState) => [...variableState, value]);
+          }
+        }
+      }
+    }
+  }
+  function idGenerator() {
+    var S4 = function () {
+      return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+    };
+    return (
+      S4() +
+      S4() +
+      '-' +
+      S4() +
+      '-' +
+      S4() +
+      '-' +
+      S4() +
+      '-' +
+      S4() +
+      S4() +
+      S4()
+    );
+  }
+  async function GetMealByID(id) {
+    await axios
       .get('https://www.themealdb.com/api/json/v1/1/lookup.php?', {
         params: {
           i: id,
@@ -41,6 +74,7 @@ export default function DetailedScreen() {
       })
       .then((response) => {
         //console.log(response.data.meals[0]);
+
         setTitle(response.data.meals[0].strMeal);
         setTags(response.data.meals[0].strTags.split(','));
         setCategory(response.data.meals[0].strCategory);
@@ -55,51 +89,18 @@ export default function DetailedScreen() {
           ingredients,
         );
         GetValues(response.data.meals[0], 'strMeasure', setMeasures, measures);
-        DefineIngredients(measures, ingredients);
       })
       .catch((error) => {
         console.log(error);
       });
   }
   useEffect(() => {
-    GetMealByID(52772);
-    //DefineIngredients(measures, ingredients);
-    //setIngredientsMeasures([...ingredientsMeasures, measures[0] + ' ' + ingredients[0] + ',']);
-
+    GetMealByID(_id);
     return () => {
       console.log('nice');
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  function GetValues(response, strName, setState, variableState) {
-    for (var [key, value] of Object.entries(response)) {
-      for (var i = 1; i <= 20; i++) {
-        if (key === strName + i) {
-          if (value !== null && value !== '') {
-            //console.log(key, value);
-            setState((variableState) => [...variableState, value]);
-          }
-        }
-      }
-    }
-  }
-  function DefineIngredients(measures, ingredients) {
-    console.log(measures, ingredients);
-    setIngredientsMeasures(measures[0]);
-    console.log(ingredientsMeasures);
-  }
-  /*
-  function GetDetails() {
-    //GetMealByID(52772);r
-    console.log(area);
-    console.log(category);
-    console.log(img);
-    console.log(link);
-    console.log(preparationMode);
-    console.log(tags);
-    console.log(title);
-  }
-  */
   return (
     <ScrollView>
       <View style={styles.container}>
