@@ -82,7 +82,7 @@ export default function MainScreen({navigation}) {
         <Search filterby={filterby} />
       </View>
       <View style={styles.radioPos}>
-        <RadioFilter />
+        <RadioFilter filterBy={FilterBy} />
       </View>
 
       <SafeAreaView style={styles.scroll}>

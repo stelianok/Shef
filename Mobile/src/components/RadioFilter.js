@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 
+import {recipeName} from './Search';
 const styles = StyleSheet.create({
   textStyle: {
     fontSize: 18,
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function RadioFilter({FilterBy}) {
+export default function RadioFilter({filterBy}) {
   const [isNameButtonActive, setIsNameButtonActive] = useState(true);
   const [isCategoryButtonActive, setIsCategoryButtonActive] = useState(false);
   const [isOriginButtonActive, setIsOriginButtonActive] = useState(false);
@@ -68,6 +69,7 @@ export default function RadioFilter({FilterBy}) {
               setIsCategoryButtonActive,
               setIsOriginButtonActive,
             );
+            filterBy('Name', recipeName);
           }}>
           <Text style={styles.textStyle}>Name</Text>
         </TouchableOpacity>
@@ -85,6 +87,7 @@ export default function RadioFilter({FilterBy}) {
               setIsNameButtonActive,
               setIsOriginButtonActive,
             );
+            filterBy('Category', recipeName);
           }}>
           <Text style={styles.textStyle}>Category</Text>
         </TouchableOpacity>
@@ -102,6 +105,7 @@ export default function RadioFilter({FilterBy}) {
               setIsNameButtonActive,
               setIsCategoryButtonActive,
             );
+            filterBy('Area', recipeName);
           }}>
           <Text style={styles.textStyle}>Origin</Text>
         </TouchableOpacity>
