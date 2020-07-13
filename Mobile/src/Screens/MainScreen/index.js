@@ -6,7 +6,7 @@ import RandomButton from '../../components/RandomButton';
 
 import axios from 'axios';
 
-import Search from '../../components/Search';
+import {Search, recipeName} from '../../components/Search';
 import RadioFilter from '../../components/RadioFilter';
 import Recipe from '../../components/RecipeList/Recipe';
 import styles from './styles';
@@ -63,14 +63,17 @@ export default function MainScreen({navigation}) {
       console.log('invalid filter');
     }
   }
+
   useEffect(() => {
-    //FilterBy('Area', 'Japanese')
-    FilterBy('Category', 'Dessert');
-    //FilterBy('Name', 'Arrabiata')
+    //FilterBy('Area', 'Japanese');
+    //FilterBy('Category', 'Dessert');
+    FilterBy('Name', recipeName);
     return () => {
       console.log('Everything ok');
+      console.log(recipeName);
     };
   }, []);
+  FilterBy('Name', recipeName);
   return (
     <View style={styles.container}>
       <View style={styles.searchPos}>
